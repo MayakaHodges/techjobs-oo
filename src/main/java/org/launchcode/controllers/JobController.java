@@ -50,16 +50,17 @@ public class JobController {
             return "new-job";
         }
 
-        Job newJob = new Job(
+        Job jobById = new Job(
                 jobForm.getName(),
                 jobData.getEmployers().findById(jobForm.getEmployerId()),
                 jobData.getLocations().findById(jobForm.getLocationId()),
-                jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId()),
-                jobData.getPositionTypes().findById(jobForm.getPositionId()),);
+                jobData.getPositionTypes().findById(jobForm.getPositionId()),
+                jobData.getCoreCompetencies().findById(jobForm.getCoreCompetencyId())
+        );
 
-        jobData.add(newJob);
+        jobData.add(jobById);
 
-        return "job-detail:?id=" + newJob.getId();
+        return "redirect:/job?id=" + jobById.getId();
 
     }
 }
